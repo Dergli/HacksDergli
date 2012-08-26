@@ -14,6 +14,6 @@ def update():
     sleep(2)
     subprocess.Popen("git init", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
     sleep(2)
-	subprocess.Popen("git pull https://github.com/websploit/update.git", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
+    subprocess.Popen("git pull https://github.com/websploit/update.git", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
     print(wcolors.color.GREEN + "[*]Update was completed successfully." + wcolors.color.ENDC)
     sleep(1)
