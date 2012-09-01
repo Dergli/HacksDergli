@@ -12,6 +12,7 @@ def help():
     print (wcolors.color.GREEN + "---------------\t\t----------------" + wcolors.color.ENDC)
     print "set \t\t\tSet Value Of Options To Modules"
     print "scan\t\t\tScan Wifi (Wireless Modules)"
+    print "stop\t\t\tStop Attack & Scan (Wireless Modules)"
     print "run \t\t\tExecute Module"
     print "use \t\t\tSelect Module For Use"
     print "os \t\t\tRun Linux Commands(ex : os ifconfig)"
