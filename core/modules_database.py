@@ -35,4 +35,5 @@ def modules_database():
     print (wcolors.color.BLUE + "Wireless Modules\t\tDescription" + wcolors.color.ENDC)
     print (wcolors.color.GREEN + "-------------------\t\t---------------------" + wcolors.color.ENDC)
     print "wifi/wifi_jammer\t\tWifi Jammer"
+    print "wifi/wifi_dos\t\t\tWifi Dos Attack"
     print "\n"

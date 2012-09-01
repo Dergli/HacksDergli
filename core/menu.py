@@ -12,6 +12,6 @@ def main_info():
 	print "\t\t--=" + ston + "WebSploit FrameWork"
 	print "\t+---**---==" + ston + "Version :" + wcolors.color.RED + "2.0.2" + wcolors.color.ENDC
 	print "\t+---**---==" + ston + "Codename :" + wcolors.color.RED + "Lifeless Fire" + wcolors.color.ENDC
-	print "\t+---**---==" + ston + "Available Modules : " + wcolors.color.GREEN + "15" + wcolors.color.ENDC
-	print "\t\t--=" + ston + "Update : [" + wcolors.color.RED + "r2.0.2-113 26.8.2012" + wcolors.color.ENDC + "]"
+	print "\t+---**---==" + ston + "Available Modules : " + wcolors.color.GREEN + "16" + wcolors.color.ENDC
+	print "\t\t--=" + ston + "Update Date : [" + wcolors.color.RED + "r2.0.2-115 1.9.2012" + wcolors.color.ENDC + "]"
 	print "\n\n"
