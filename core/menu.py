@@ -10,8 +10,8 @@ def main_info():
 	ston = wcolors.color.BLUE + "[" + wcolors.color.ENDC
 	print ""
 	print "\t\t--=" + ston + "WebSploit FrameWork"
-	print "\t+---**---==" + ston + "Version :" + wcolors.color.RED + "2.0.2" + wcolors.color.ENDC
-	print "\t+---**---==" + ston + "Codename :" + wcolors.color.RED + "Lifeless Fire" + wcolors.color.ENDC
+	print "\t+---**---==" + ston + "Version :" + wcolors.color.RED + "2.0.3" + wcolors.color.ENDC
+	print "\t+---**---==" + ston + "Codename :" + wcolors.color.RED + "CyberTron" + wcolors.color.ENDC
 	print "\t+---**---==" + ston + "Available Modules : " + wcolors.color.GREEN + "16" + wcolors.color.ENDC
-	print "\t\t--=" + ston + "Update Date : [" + wcolors.color.RED + "r2.0.2-115 1.9.2012" + wcolors.color.ENDC + "]"
+	print "\t\t--=" + ston + "Update Date : [" + wcolors.color.RED + "r2.0.3-116 9.10.2012" + wcolors.color.ENDC + "]"
 	print "\n\n"

@@ -7,7 +7,6 @@
 from core import wcolors
 from time import sleep
 def modules_database():
-    sleep(1)
     print ""
     print (wcolors.color.BLUE + "Web Modules\t\t\tDescription" + wcolors.color.ENDC)
     print (wcolors.color.GREEN + "-------------------\t\t---------------------" + wcolors.color.ENDC)

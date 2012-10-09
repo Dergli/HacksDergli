@@ -30,7 +30,6 @@
 #    Email : 0x0ptim0us@Gmail.com
 #    Project In SourceForge : https://sourceforge.net/p/websploit/wiki/Home/
 #    Blog : www.websploit.ir
-#    Development Group : Secure-Land.net
 #
 import os
 from time import sleep

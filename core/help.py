@@ -23,4 +23,3 @@ def help():
     print "update\t\t\tUpdate Websploit Framework "
     print "about\t\t\tAbout US"
     print ""
-    sleep(1)

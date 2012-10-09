@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# WebSploit Toolkit Fake Update module
+# WebSploit Framework Fake Update module
 # Idea By G0tmi1k
 # Created By 0x0ptim0us (Fardin Allahverdinazhand)
 # Email : 0x0ptim0us@Gmail.Com

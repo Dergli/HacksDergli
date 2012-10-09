@@ -75,6 +75,10 @@ def wifi_jammer():
             sleep(1)
             os.system(xterm_4)
             wifi_jammer()
+        elif com[0:4] =='stop':
+            subprocess.Popen("killall xterm", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
+            subprocess.Popen("killall aireplay", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
+            wifi_jammer()
         else:
             print "Wrong Command => ", com
             wifi_jammer()

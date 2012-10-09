@@ -15,14 +15,7 @@ def about():
 	Report Bug : 0x0ptim0us@Gmail.Com
 	""" + wcolors.color.ENDC
 	print "\n"
-	print(wcolors.color.RED + "Developer Team :" + wcolors.color.ENDC)
-	print wcolors.color.YELLOW + """
-	Mikail Skandary (Mikili)
-	Location : Iran - Shahrood
-	Mohammad Mortazavi (2MzRp)
-	Location : Iran - Tehran
-	Secure-Land.net """ + wcolors.color.ENDC
-	print "\n"
+	print(wcolors.color.RED + "Developer Team Not Available !\n" + wcolors.color.ENDC)
 	
 
 	
