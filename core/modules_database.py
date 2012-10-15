@@ -31,8 +31,9 @@ def modules_database():
     print "exploit/browser_autopwn\t\tMetasploit Browser Autopwn Service"
     print "exploit/java_applet\t\tJava Applet Attack (Using HTML)"
     print "\n"
-    print (wcolors.color.BLUE + "Wireless Modules\t\tDescription" + wcolors.color.ENDC)
+    print (wcolors.color.BLUE + "Wireless / Bluetooth Modules\t\tDescription" + wcolors.color.ENDC)
     print (wcolors.color.GREEN + "-------------------\t\t---------------------" + wcolors.color.ENDC)
     print "wifi/wifi_jammer\t\tWifi Jammer"
     print "wifi/wifi_dos\t\t\tWifi Dos Attack"
+    print "bluetooth/bluetooth_pod\t\tBluetooth Ping Of Death Attack"
     print "\n"

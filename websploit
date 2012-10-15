@@ -55,6 +55,7 @@ from modules import brow_autopwn
 from modules import java_applet
 from modules import wifi_jammer
 from modules import wifi_dos
+from modules import bluetooth_pod
 from modules.fakeap import fake_ap
 from modules.fakeupdate import fakeupdate
 
@@ -111,6 +112,9 @@ def main():
                 main()
             elif terminal[4:17] =='wifi/wifi_dos':
                 wifi_dos.wifi_dos()
+                main()
+            elif terminal[4:27] =='bluetooth/bluetooth_pod':
+                bluetooth_pod.bluetooth_pod()
                 main()
         elif terminal[0:12] == 'show modules':
             modules_database.modules_database()
