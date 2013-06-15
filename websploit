@@ -50,11 +50,13 @@ from modules import autopwn
 from modules import mitm
 from modules import mlitm
 from modules import mfod
+from modules import arp_poisoner
 from modules import webkiller
 from modules import brow_autopwn
 from modules import java_applet
 from modules import wifi_jammer
 from modules import wifi_dos
+from modules import wifi_honeypot
 from modules import bluetooth_pod
 from modules.fakeap import fake_ap
 from modules.fakeupdate import fakeupdate
@@ -104,6 +106,9 @@ def main():
             elif terminal[4:18] =='network/fakeap':
                 fake_ap.fake_sts()
                 main()
+            elif terminal[4:24] =='network/arp_poisoner':
+                arp_poisoner.arp_poisoner()
+                main()
             elif terminal[4:22] =='network/fakeupdate':
                 fakeupdate.fakeupdate()
                 main()
@@ -112,6 +117,9 @@ def main():
                 main()
             elif terminal[4:17] =='wifi/wifi_dos':
                 wifi_dos.wifi_dos()
+                main()
+            elif terminal[4:22] =='wifi/wifi_honeypot':
+                wifi_honeypot.wifi_honeypot()
                 main()
             elif terminal[4:27] =='bluetooth/bluetooth_pod':
                 bluetooth_pod.bluetooth_pod()

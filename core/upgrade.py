@@ -14,7 +14,7 @@ def upgrade():
     try:
         cu = urllib.urlopen("http://sourceforge.net/projects/websploit/files/")
         res = cu.read()
-        if 'WebSploit Framework V.2.0.4' in res:
+        if 'WebSploit Framework V.2.0.5' in res:
             print(wcolors.color.GREEN + "[*]New Version Available")
             sleep(2)
             print("[*]Download Latest Version : https://sourceforge.net/projects/websploit/files/latest/download?source=files" + wcolors.color.ENDC)

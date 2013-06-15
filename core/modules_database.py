@@ -24,6 +24,7 @@ def modules_database():
     print "network/webkiller\t\tTCP Kill Attack"
     print "network/fakeupdate\t\tFake Update Attack Using DNS Spoof"
     print "network/fakeap\t\t\tFake Access Point"
+    print "network/arp_poisoner\t\tArp Poisoner"
     print "\n"
     print (wcolors.color.BLUE + "Exploit Modules\t\t\tDescription" + wcolors.color.ENDC)
     print (wcolors.color.GREEN + "-------------------\t\t---------------------" + wcolors.color.ENDC)
@@ -35,5 +36,6 @@ def modules_database():
     print (wcolors.color.GREEN + "-------------------\t\t---------------------" + wcolors.color.ENDC)
     print "wifi/wifi_jammer\t\tWifi Jammer"
     print "wifi/wifi_dos\t\t\tWifi Dos Attack"
+    print "wifi/wifi_honeypot\t\tWireless Honeypot(Fake AP)"
     print "bluetooth/bluetooth_pod\t\tBluetooth Ping Of Death Attack"
     print "\n"
