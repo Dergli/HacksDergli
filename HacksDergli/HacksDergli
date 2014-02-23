@@ -270,6 +270,7 @@ elif [ "$VAR" = "3" ]; then
 banner
 echo 1.- Phising con Setoolkit
 echo 2.- SPTollkit
+echo 3.- Crear certificado SSL
 echo Pulsar enter para volver al menu
 	read VAR
 	clear
@@ -282,6 +283,19 @@ echo Pulsar enter para volver al menu
 	service apache2 start
 	service mysql start
 	firefox -new-window http://127.0.0.1/spt
+	elif [ "$VAR" = "3" ]
+	then
+	rm -r /etc/apache2/ssl
+	a2enmod ssl
+	service apache2 restart
+	mkdir /etc/apache2/ssl
+	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+	sed '4c\127.0.0.1:443' /etc/apache2/sites-available/default-ssl > default-sslfake | mv default-sslfake default-ssl
+	sed '51c\SSLCertificateFile /etc/apache2/ssl/apache.crt' /etc/apache2/sites-available/default-ssl > default-sslfake | mv default-sslfake default-ssl
+	sed '52c\SSLCertificateKeyFile /etc/apache2/ssl/apache.key' /etc/apache2/sites-available/default-ssl > default-sslfake | mv default-sslfake default-ssl
+	a2ensite default-ssl
+	service apache2 reload
+	firefox -new-window https://127.0.0.1 &
 	fi
 elif [ "$VAR" = "4" ]; then
 banner
