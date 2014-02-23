@@ -114,6 +114,7 @@ fn_fakeapinstal()
 {
 cd /home/HacksDergli/easy-creds
 ./installer.sh
+apt-get install yersinia
 }
  
 banner
@@ -122,8 +123,10 @@ echo 1.- Configurar IP DMZ
 echo 2.- Iniciar Metasploit
 echo 3.- Phising
 echo 4.- Servidor MAIL
-echo 5.- Crear FakeAP
-echo 6.- Programas necesarios
+echo 5.- Crear FakeAP/Hacer MITM
+echo 6.- Telefonia Virtual/SpoofSMS
+echo 7.- Anonimato //Proximamente
+echo 8.- Programas necesarios
 echo 0.- Detener todos los servicios
 echo q.- Salir
 
@@ -318,6 +321,7 @@ banner
 echo 1.- Configurar manualmente
 echo 2.- Iniciar FakeAP PwnStart
 echo 3.- Iniciar FakeAP easy-creds
+echo 4.- Hacer ataque MITM a VLAN/VPN
 echo Pulsar enter para volver al menu
 	read VAR
 	clear
@@ -331,8 +335,46 @@ echo Pulsar enter para volver al menu
 	elif [ "$VAR" = "3" ]
 	then
 	easy-creds
+	elif [ "$VAR" = "4" ]
+	then
+	yersinia -G &
 	fi
 elif [ "$VAR" = "6" ]; then
+banner
+echo 1.- Telefonia virtual
+echo 2.- SpooferSMS
+echo Pulsar enter para volver al menu
+	read VAR
+	clear
+	if [ "$VAR" = "1" ]
+	then
+	echo 1.- FonYou
+	echo 2.- Yuilop
+	echo 3.- UppTalk
+		read VAR
+		clear
+		if [ "$VAR" = "1" ]
+		then
+		firefox -new-window http://www.fonyou.es/ &
+		elif [ "$VAR" = "2" ]
+		then
+		firefox -new-window http://yuilop.com/es/ &
+		elif [ "$VAR" = "3" ]
+		then
+		firefox -new-window http://upptalk.com/ &
+		fi
+	elif [ "$VAR" = "2" ]
+	then
+	firefox -new-window http://www.lleida.net/es &
+	fi
+elif [ "$VAR" = "7"; then
+banner
+echo 1.- Instalar
+echo 2.- Tor
+echo 3.- FreeNet
+	read VAR
+
+elif [ "$VAR" = "8" ]; then
 banner
 echo 1.- Instalar
 echo Pulsa enter para volver al menu
