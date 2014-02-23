@@ -116,7 +116,14 @@ cd /home/HacksDergli/easy-creds
 ./installer.sh
 apt-get install yersinia
 }
- 
+#Webmin
+fn_webinstal(){
+echo "deb http://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list
+echo "deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib" >> /etc/apt/sources.list
+apt-get update
+apt-get install webmin
+}
+
 banner
 
 echo 1.- Configurar IP DMZ
@@ -126,7 +133,8 @@ echo 4.- Servidor MAIL
 echo 5.- Crear FakeAP/Hacer MITM
 echo 6.- Telefonia Virtual/SpoofSMS
 echo 7.- Anonimato //Proximamente
-echo 8.- Programas necesarios
+echo 8.- AIO Server
+echo 9.- Programas necesarios
 echo 0.- Detener todos los servicios
 echo q.- Salir
 
@@ -373,8 +381,20 @@ echo 1.- Instalar
 echo 2.- Tor
 echo 3.- FreeNet
 	read VAR
-
 elif [ "$VAR" = "8" ]; then
+echo 1.- Instalar
+echo 2.- Iniciar AIO Server
+	read VAR
+	clear
+	if [ "$VAR" = "1" ]
+	then
+	fn_webinstal
+	elif [ "$VAR" = "2" ]
+	then
+	firefox -new-window https://127.0.0.1:10000 &
+	fi
+
+elif [ "$VAR" = "9" ]; then
 banner
 echo 1.- Instalar
 echo Pulsa enter para volver al menu
@@ -406,11 +426,13 @@ echo Pulsa enter para volver al menu
 		fn_fakeapinstal
 		elif [ "$VAR" = "6" ]
 		then
+		apt-get update
 		fn_installn
 		fn_metainstal
 		fn_phisintal
 		fn_emailinstal
 		fn_fakeapinstal
+		fn_webinstal
 	#echo Proximamente
 	#apt-get install mysql
 	#apt-get install apache2
