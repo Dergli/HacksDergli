@@ -367,7 +367,7 @@ echo Pulsar enter para volver al menu
 	then
 	firefox -new-window http://www.lleida.net/es &
 	fi
-elif [ "$VAR" = "7"; then
+elif [ "$VAR" = "7" ]; then
 banner
 echo 1.- Instalar
 echo 2.- Tor
