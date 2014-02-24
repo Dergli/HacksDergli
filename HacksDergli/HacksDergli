@@ -132,15 +132,38 @@ cd /home/HacksDergli/
 unzip whatsapp.zip
 rm whatsapp.zip
 }
+fn_bullinstal()
+{
+apt-get install dialog
+apt-get install xterm
+#unzip -q /home/HacksDergli/bully-master.zip
+#cd /home/HacksDergli/bully-master/src
+#make -j >/dev/null 2>&1
+#cp bully /usr/bin
+#curl -s -o "$TMP/bully-${VERSION_GIT}.zip" \
+#wget https://codeload.github.com/bdpurcell/bully/zip/master
+#unzip -q "$TMP/bully-${VERSION_GIT}.zip" -d "$TMP"
+#cd home/HacksDergli/bully-master/src"
+#make -j >/dev/null 2>&1
+#cp bully /usr/bin
+}
+fn_torinstal()
+{
+apt-get update && apt-get install -y tor 
+apt-get privoxy
+apt-get vidalia
+echo "forward-socks4a / 127.0.0.1:9050 . " >> /etc/privoxy/config 
+firefox -new-window https://addons.mozilla.org/es/firefox/addon/foxyproxy-standard/
+}
 banner
 
-echo 1.- Configurar IP DMZ
+echo 1.- Configurar IP DMZ/Crackear WiFi
 echo 2.- Iniciar Metasploit
 echo 3.- Phising
 echo 4.- Servidor MAIL
 echo 5.- Crear FakeAP/Hacer MITM
 echo 6.- Telefonia Virtual/SpoofSMS
-echo 7.- Anonimato //Proximamente
+echo 7.- Anonimato 
 echo 8.- AIO Server
 echo 9.- Programas necesarios
 echo 0.- Detener todos los servicios
@@ -154,7 +177,8 @@ if [ "$VAR" = "1" ]; then
 banner
 echo 1.- Configurar IP por cable
 echo 2.- Configurar IP Wireless
-echo 3.- Configurar visualmente
+echo "3.- Crackear WiFi (Bully)"
+echo 4.- Configurar visualmente
 echo Pulsar enter para volver al menu
 	read VAR
 	clear
@@ -243,6 +267,10 @@ echo Pulsar enter para volver al menu
 		echo Proximamente
 		fi
 	elif [ "$VAR" = "3" ]
+	then
+	cd /home/HacksDergli/
+	sh bully.sh
+	elif [ "$VAR" = "4" ]
 	then 
 	/etc/init.d/network-manager start
 	fi
@@ -408,10 +436,13 @@ echo Pulsar enter para volver al menu
 		fn_whatsinstal
 		elif [ "$VAR" = "2" ]
 		then
-		echo Introduce la RUTA donde se encuentra el fichero msgstore.db.crypt
-		read WA
-		cd /home/HacksDergli/
-		python whatsapp_xtract.py "$WA/msgstore.db.crypt"
+		#echo Introduce la RUTA donde se encuentra el fichero msgstore.db.crypt
+		#read WA
+		#cd /home/HacksDergli/
+		#WA='zenity --file-selection --title="Selecciona el archivo *.db.crypt"'
+		#cp $WA /home/HacksDergli/
+		WA=`zenity --file-selection --title="Selecciona el archivo *.db.crypt"`
+		python /home/HacksDergli/whatsapp_xtract.py $WA
 		fi
 	fi
 elif [ "$VAR" = "7" ]; then
@@ -420,6 +451,20 @@ echo 1.- Instalar
 echo 2.- Tor
 echo 3.- FreeNet
 	read VAR
+	clear
+	if [ "$VAR" = "1" ]
+	then
+	fn_torinstal
+	elif [ "$VAR" = "2" ]
+	then
+	/etc/init.d/tor start
+	/etc/init.d/privoxy start
+	vidalia &
+	firefox -new-window http://kpvz7ki2v5agwt35.onion/wiki/index.php/Main_Page &
+	elif [ "$VAR" = "3" ]
+	then
+	echo Proximamente
+	fi
 elif [ "$VAR" = "8" ]; then
 echo 1.- Instalar
 echo 2.- Iniciar AIO Server
@@ -447,7 +492,9 @@ echo Pulsa enter para volver al menu
 	echo 3.- Instalar programas Phising
 	echo 4.- Instalar progrmas necesarios EMAIL
 	echo 5.- Instalar programas FakeAP
-	echo 6.- Instalar todos
+	echo 6.- Instalar WhatsApp Decrypter
+	echo "7.- Instalar Bully (Crackear WiFi)"
+	echo 8.- Instalar todos
 	read VAR
 		if [ "$VAR" = "1" ]; then
 		fn_installn
@@ -465,6 +512,12 @@ echo Pulsa enter para volver al menu
 		fn_fakeapinstal
 		elif [ "$VAR" = "6" ]
 		then
+		fn_whatsinstal
+		elif [ "$VAR" = "7" ]
+		then
+		fn_bullinstal
+		elif [ "$VAR" = "8" ]
+		then
 		apt-get update
 		fn_installn
 		fn_metainstal
@@ -472,6 +525,9 @@ echo Pulsa enter para volver al menu
 		fn_emailinstal
 		fn_fakeapinstal
 		fn_webinstal
+		fn_whatsinstal
+		fn_bullinstal
+		fn_torinstal
 	#echo Proximamente
 	#apt-get install mysql
 	#apt-get install apache2
