@@ -123,7 +123,15 @@ echo "deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge cont
 apt-get update
 apt-get install webmin
 }
-
+#WhatsApp
+fn_whatsinstal()
+{
+apt-get update
+apt-get install python sqlite3
+cd /home/HacksDergli/
+unzip whatsapp.zip
+rm whatsapp.zip
+}
 banner
 
 echo 1.- Configurar IP DMZ
@@ -365,6 +373,7 @@ elif [ "$VAR" = "6" ]; then
 banner
 echo 1.- Telefonia virtual
 echo 2.- SpooferSMS
+echo 3.- Desencriptar BD WhatsApp
 echo Pulsar enter para volver al menu
 	read VAR
 	clear
@@ -388,6 +397,22 @@ echo Pulsar enter para volver al menu
 	elif [ "$VAR" = "2" ]
 	then
 	firefox -new-window http://www.lleida.net/es &
+	elif [ "$VAR" = "3" ]
+	then
+	echo 1.- Instalar DB Decrypter WhatsApp
+	echo 2.- Iniciar DB Decrypter WhatsApp
+		read VAR
+		clear
+		if [ "$VAR" = "1" ]
+		then
+		fn_whatsinstal
+		elif [ "$VAR" = "2" ]
+		then
+		echo Introduce la RUTA donde se encuentra el fichero msgstore.db.crypt
+		read WA
+		cd /home/HacksDergli/
+		python whatsapp_xtract.py "$WA/msgstore.db.crypt"
+		fi
 	fi
 elif [ "$VAR" = "7" ]; then
 banner
