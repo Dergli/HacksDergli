@@ -1,0 +1,543 @@
+#!/bin/bash
+
+#Este es mi primer proyecto. Se que tiene mucho, pero que mucho que mejorar.
+#En este script no se escribe codigos de terceros, todo el codigo ha sido
+#creado por mi (Dergli) aunque si es cierto que he añadido llamadas a programas
+#de terceros. Pero el codigo de estos programas de terceros no han sido modificados
+#ni manipulados, es decir, los programas son los mismos si nos los descargamos independientemente.
+#Me gustaría encontrar participacion en este proyectos y ayudas de sus conocimientos para poder
+#ir completando este proyecto poco a poco, como puede ser por ejemplo, un modulo para comprobar
+#la seguridad de tus claves WiFi, entre otras cosas. Tambien crear un SpoofMail con un formulario
+#y la correcta configuracion del servidor local con php para hacer los envios desde la maquina local
+#Todas las criticas he ideas son bien recividas, y si quereis formar parte del proyecto a traves de
+#git sois bienvenidos. (Si teneis conocimientos de git mejor, ya que tambien soy nuevo en el control
+#de versiones)
+#Si quereis modificar el codigo o compartir estais en vuestro derecho, lo unico que pido es que se
+#nombre de donde ha salido la idea principal y el paquete principal el cual habeis modificado
+
+#####################################################################
+#Autor: Dergli							    #
+#PaginaWeb: En construccion					    #
+#Email de contacto:		dergli@hushmail.com		    #
+#								    #
+#								    #
+#####################################################################
+
+
+
+#Para finalizar ya todo este toston, simplemete agradeceros el tiempo empleado en descargar este proyecto
+#y ver como funciona.
+
+
+
+
+
+
+while
+clear
+
+#-----------FUNCIONES----------------------
+#Creamos el banner de inicio
+banner()
+{
+echo "
+
+@@@  @@@   @@@@@@    @@@@@@@  @@@  @@@   @@@@@@      @@@@@@@   @@@@@@@@  @@@@@@@    @@@@@@@@  @@@       @@@
+@@@  @@@  @@@@@@@@  @@@@@@@@  @@@  @@@  @@@@@@@      @@@@@@@@  @@@@@@@@  @@@@@@@@  @@@@@@@@@  @@@       @@@
+@@!  @@@  @@!  @@@  !@@       @@!  !@@  !@@          @@!  @@@  @@!       @@!  @@@  !@@        @@!       @@!
+!@!  @!@  !@!  @!@  !@!       !@!  @!!  !@!          !@!  @!@  !@!       !@!  @!@  !@!        !@!       !@!
+@!@!@!@!  @!@!@!@!  !@!       @!@@!@!   !!@@!!       @!@  !@!  @!!!:!    @!@!!@!   !@! @!@!@  @!!       !!@
+!!!@!!!!  !!!@!!!!  !!!       !!@!!!     !!@!!!      !@!  !!!  !!!!!:    !!@!@!    !!! !!@!!  !!!       !!!
+!!:  !!!  !!:  !!!  :!!       !!: :!!        !:!     !!:  !!!  !!:       !!: :!!   :!!   !!:  !!:       !!:
+:!:  !:!  :!:  !:!  :!:       :!:  !:!      !:!      :!:  !:!  :!:       :!:  !:!  :!:   !::   :!:      :!:
+::   :::  ::   :::   ::: :::   ::  :::  :::: ::       :::: ::   :: ::::  ::   :::   ::: ::::   :: ::::   ::
+ :   : :   :   : :   :: :: :   :   :::  :: : :       :: :  :   : :: ::    :   : :   :: :: :   : :: : :  :
+
+"
+
+}
+#******METASPLOIT*******
+# Iniciamos los servios de metasploit
+metasploit_init()
+{
+service postgresql start
+service metasploit start
+service apache2 start
+}
+# Detemos los servicios de metasploit
+metasploit_fin()
+{
+service postgresql stop
+service metasploit stop
+service apache2 stop
+}
+# Detenemos todos los servicios
+services_stop()
+{
+service apache2 stop
+service mysql stop
+service metasploit stop
+service postfix stop
+service postgresql stop
+}
+#******************* INSTALACION DE PROGRAMAS
+# Programas principales
+fn_installn()
+{
+apt-get install dhcpd
+apt-get install network-network
+apt-get install apache2
+apt-get install mysql-server
+}
+# Programas Mestasploit
+fn_metainstal()
+{
+apt-get install metasploit
+apt-get install metasploit-framework
+apt-get install armitage
+}
+# Programas Phising
+fn_phisintal()
+{
+git clone https://github.com/trustedsec/social-engineer-toolkit/ set/
+git clone https://github.com/sptoolkit/sptoolkit /var/www/
+}
+# Programas EMAIL
+fn_emailinstal()
+{
+apt-get install squirrelmail
+apt-get install postfix
+apt-get install swaks
+}
+# Programas Fake AP
+fn_fakeapinstal()
+{
+cd /home/HacksDergli/easy-creds
+./installer.sh
+apt-get install yersinia
+}
+#Webmin
+fn_webinstal(){
+echo "deb http://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list
+echo "deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib" >> /etc/apt/sources.list
+apt-get update
+apt-get install webmin
+}
+#WhatsApp
+fn_whatsinstal()
+{
+apt-get update
+apt-get install python sqlite3
+cd /home/HacksDergli/
+unzip whatsapp.zip
+rm whatsapp.zip
+}
+fn_bullinstal()
+{
+apt-get install dialog
+apt-get install xterm
+#unzip -q /home/HacksDergli/bully-master.zip
+#cd /home/HacksDergli/bully-master/src
+#make -j >/dev/null 2>&1
+#cp bully /usr/bin
+#curl -s -o "$TMP/bully-${VERSION_GIT}.zip" \
+#wget https://codeload.github.com/bdpurcell/bully/zip/master
+#unzip -q "$TMP/bully-${VERSION_GIT}.zip" -d "$TMP"
+#cd home/HacksDergli/bully-master/src"
+#make -j >/dev/null 2>&1
+#cp bully /usr/bin
+}
+fn_torinstal()
+{
+apt-get update && apt-get install -y tor 
+apt-get privoxy
+apt-get vidalia
+echo "forward-socks4a / 127.0.0.1:9050 . " >> /etc/privoxy/config 
+firefox -new-window https://addons.mozilla.org/es/firefox/addon/foxyproxy-standard/
+}
+banner
+
+echo 1.- Set IP DMZ/Crack WiFi
+echo 2.- Start Metasploit
+echo 3.- Phising
+echo 4.- Server MAIL
+echo 5.- Create FakeAP/Do MITM attack
+echo 6.- Virtual Telephony/SpoofSMS
+echo 7.- Anonymity
+echo 8.- AIO Server
+echo 9.- Programs needed
+echo 0.- Stop all services
+echo q.- Quit
+
+read VAR
+clear
+do
+#Configuramos la IP
+if [ "$VAR" = "1" ]; then
+banner
+echo 1.- Set IP by Ethernet
+echo 2.- Set IP by Wireless
+echo "3.- Crack WiFi (Bully)"
+echo 4.- Set Network GUI
+echo "Press enter to return menu"
+	read VAR
+	clear
+	#Configuracion para red Ethernet
+	if [ "$VAR" = "1" ]
+	then
+	/etc/init.d/network-manager stop
+	clear
+	echo "Enter the interface (eth0)"
+	read IT
+	ifconfig $IT up
+	echo Enter the IP
+	read IP
+	echo Enter the mask
+	read NM
+	ifconfig $IT $IP netmask $NM 
+	echo Enter the gateway
+	read GW
+	route add -net 0.0.0.0 gw $GW netmask 255.255.255.0
+	echo -e "nameserver 8.8.8.8 \nnameserver 8.8.4.4\n" > /etc/resolv.conf 
+	dhclient -r
+	dhclient $IT
+	sleep 2
+	#Configuracion para red Wireless
+	elif [ "$VAR" = "2" ]
+	then
+	/etc/init.d/network-manager stop
+	ifup lo
+	clear
+	iwconfig
+	echo "Introduce la interfaz (wlan0)"
+	read IT
+	ifconfig $IT up
+	clear
+	iwlist $IT scan
+	sleep 10
+	clear
+	#Configuracion seguridad Wireless
+	echo 1.- WPE security
+	echo 2.- WPA security
+	echo 3.- Open
+	echo "Press enter to return menu"
+	read VAR
+		#Configuracion WEP
+		if [ "$VAR" = "1" ]
+		then
+		echo Enter the name network
+		read AP
+		iwconfig $IT essid $AP
+		echo Enter password
+		read PASS
+		iwconfig $IT key $PASS
+		echo Enter the IP
+		read IP
+		echo Enter the mask
+		read NM
+		ifconfig $IT $IP netmask $NM
+		echo Enter the gateway 
+		read GW
+		route add -net 0.0.0.0 gw $GW netmask 255.255.255.0 $IT
+		echo -e "nameserver 8.8.8.8 \nnameserver 8.8.4.4\n" > /etc/resolv.conf 
+		dhclient -r
+		dhclient $IT
+		#Configuracion WPA
+		elif [ "$VAR" = "2" ]
+		then
+		echo Enter the name network
+		read AP
+		echo Enter the password
+		read PASS
+		wpa_passphrase $AP $PASS > /root/wpa.conf
+		wpa_supplicant -B -Dwext -i $IT -c/root/wpa.conf
+		#/echo Introduce la IP
+		#read IP
+		#echo Introduce la mascara
+		#read NM
+		#ifconfig $IT $IP netmask $NM
+		#echo Introduce la puerta de enlace
+		#read GW
+		#route add -net 0.0.0.0 gw $GW netmask 0.0.0.0 $IT
+		#echo -e "nameserver 8.8.8.8 \nnameserver 8.8.4.4\n" > /etc/resolv.conf
+		dhclient -r
+		dhclient $IT
+		elif [ "$VAR" = "3" ]
+		then
+		echo Proximamente
+		fi
+	elif [ "$VAR" = "3" ]
+	then
+	cd /home/HacksDergli/
+	sh bully.sh
+	elif [ "$VAR" = "4" ]
+	then 
+	/etc/init.d/network-manager start
+	fi
+elif [ "$VAR" = "2" ]; then
+banner
+echo 1.- Update Metasploit
+echo 2.- Start services Metasploit y Metasploit
+echo 3.- Start services Metasploit
+echo 4.- Start services Metasploit y Armitage
+echo 5.- Stop services Metasploit
+echo "Press enter to return menu"
+	read VAR
+	clear
+	if [ "$VAR" = "1" ]
+	then
+	msfupdate
+	elif [ "$VAR" = "2" ]
+	then
+	metasploit_init
+	msfconsole
+	elif [ "$VAR" = "3" ]
+	then
+	metasploit_init 
+	elif [ "$VAR" = "4" ]
+	then
+	metasploit_init
+	armitage
+	elif [ "$VAR" = "5" ]
+	then
+	metasploit_fin
+	fi
+elif [ "$VAR" = "3" ]; then
+banner
+echo 1.- Phising con Setoolkit
+echo 2.- SPTollkit
+echo 3.- Create SSL certificate
+echo "Press enter to return menu"
+	read VAR
+	clear
+	if [ "$VAR" = "1" ]
+	then
+	service apache2 stop
+	setoolkit
+	elif [ "$VAR" = "2" ]
+	then
+	service apache2 start
+	service mysql start
+	firefox -new-window http://127.0.0.1/spt
+	elif [ "$VAR" = "3" ]
+	then
+	rm -r /etc/apache2/ssl
+	a2enmod ssl
+	service apache2 restart
+	mkdir /etc/apache2/ssl
+	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+	sed '4c\127.0.0.1:443' /etc/apache2/sites-available/default-ssl > default-sslfake | mv default-sslfake default-ssl
+	sed '51c\SSLCertificateFile /etc/apache2/ssl/apache.crt' /etc/apache2/sites-available/default-ssl > default-sslfake | mv default-sslfake default-ssl
+	sed '52c\SSLCertificateKeyFile /etc/apache2/ssl/apache.key' /etc/apache2/sites-available/default-ssl > default-sslfake | mv default-sslfake default-ssl
+	a2ensite default-ssl
+	service apache2 reload
+	firefox -new-window https://127.0.0.1 &
+	fi
+elif [ "$VAR" = "4" ]; then
+banner
+echo 1.- Set server EMAIL
+echo 2.- Start server EMAIL
+echo 3.- Stop server EMAIL
+echo 4.- Spoof addres EMAIL
+echo "5.- Spoof addres EMAIL (Con adjuntos)"
+echo "6.- Spoofr addres EMAIL (SWAKS)"
+echo "Press enter to return menu"
+	read VAR
+	clear
+	if [ "$VAR" = "1" ]
+	then
+	squirrelmail-configure
+	elif [ "$VAR" = "2" ]
+	then
+	service apache2 start
+	service postfix start
+	firefox -new-window http://127.0.0.1/squirrelmail &
+	elif [ "$VAR" = "3" ]
+	then
+	service apache2 stop
+	service postfix stop
+	elif [ "$VAR" = "4" ]
+	then
+	firefox -new-window http://www.filosofia.mx/index.php?/perse/enviar-amigo/1804 &
+	elif [ "$VAR" = "5" ]
+	then
+	firefox -new-window http://emkei.cz/ &
+	elif [ "$VAR" = "6" ]
+	then
+	echo Enter the addres of the receiver
+	read DEM
+	echo Enter the addres of the sender
+	read DRE
+	echo Enter subject of the EMAIL
+	read ASU
+	echo Enter body of the message
+	read CUER
+	swaks --to $DEM --from $DRE  --header "Subject: $ASU" --body "$CUER"
+	fi
+elif [ "$VAR" = "5" ]; then
+banner
+echo 1.- Manually configure
+echo 2.- Start FakeAP PwnStart
+echo 3.- Start FakeAP easy-creds
+echo "4.- MITM attack to make VLAN/VPN"
+echo "Press enter to return menu"
+	read VAR
+	clear
+	if [ "$VAR" = "1" ]
+	then
+	echo Aun no disponible
+	elif [ "$VAR" = "2" ]
+	then
+	cd /home/HacksDergli
+	./PwnSTAR_0.9
+	elif [ "$VAR" = "3" ]
+	then
+	easy-creds
+	elif [ "$VAR" = "4" ]
+	then
+	yersinia -G &
+	fi
+elif [ "$VAR" = "6" ]; then
+banner
+echo 1.- Virtual telephony
+echo 2.- SpoofSMS
+echo 3.- Decrypt BD WhatsApp
+echo "Press enter to return menu"
+	read VAR
+	clear
+	if [ "$VAR" = "1" ]
+	then
+	echo 1.- FonYou
+	echo 2.- Yuilop
+	echo 3.- UppTalk
+		read VAR
+		clear
+		if [ "$VAR" = "1" ]
+		then
+		firefox -new-window http://www.fonyou.es/ &
+		elif [ "$VAR" = "2" ]
+		then
+		firefox -new-window http://yuilop.com/es/ &
+		elif [ "$VAR" = "3" ]
+		then
+		firefox -new-window http://upptalk.com/ &
+		fi
+	elif [ "$VAR" = "2" ]
+	then
+	firefox -new-window http://www.lleida.net/es &
+	elif [ "$VAR" = "3" ]
+	then
+	echo 1.- Install DB Decrypter WhatsApp
+	echo 2.- Start DB Decrypter WhatsApp
+		read VAR
+		clear
+		if [ "$VAR" = "1" ]
+		then
+		fn_whatsinstal
+		elif [ "$VAR" = "2" ]
+		then
+		#echo Introduce la RUTA donde se encuentra el fichero msgstore.db.crypt
+		#read WA
+		#cd /home/HacksDergli/
+		#WA='zenity --file-selection --title="Selecciona el archivo *.db.crypt"'
+		#cp $WA /home/HacksDergli/
+		WA=`zenity --file-selection --title="Selecciona el archivo *.db.crypt"`
+		python /home/HacksDergli/whatsapp_xtract.py $WA
+		fi
+	fi
+elif [ "$VAR" = "7" ]; then
+banner
+echo 1.- Install
+echo 2.- Tor
+echo 3.- FreeNet
+	read VAR
+	clear
+	if [ "$VAR" = "1" ]
+	then
+	fn_torinstal
+	elif [ "$VAR" = "2" ]
+	then
+	/etc/init.d/tor start
+	/etc/init.d/privoxy start
+	vidalia &
+	firefox -new-window http://kpvz7ki2v5agwt35.onion/wiki/index.php/Main_Page &
+	elif [ "$VAR" = "3" ]
+	then
+	echo Proximamente
+	fi
+elif [ "$VAR" = "8" ]; then
+echo 1.- Install
+echo 2.- Start AIO Server
+	read VAR
+	clear
+	if [ "$VAR" = "1" ]
+	then
+	fn_webinstal
+	elif [ "$VAR" = "2" ]
+	then
+	firefox -new-window https://127.0.0.1:10000 &
+	fi
+
+elif [ "$VAR" = "9" ]; then
+banner
+echo 1.- Install
+echo "Press enter to return menu"
+#echo 2.- Actualizar
+	read VAR
+	clear
+	if [ "$VAR" = "1" ]
+	then
+	echo 1.- Install programs needed 
+	echo 2.- Install programs Metasploit
+	echo 3.- Install programs Phising
+	echo 4.- Install progrms needed EMAIL
+	echo 5.- Install programs FakeAP
+	echo 6.- Install WhatsApp Decrypter
+	echo "7.- Install Bully (Crackear WiFi)"
+	echo "8.- All install"
+	read VAR
+		if [ "$VAR" = "1" ]; then
+		fn_installn
+		elif [ "$VAR" = "2" ]
+		then
+		fn_metainstal
+		elif [ "$VAR" = "3" ]
+		then
+		fn_phisintal
+		elif [ "$VAR" = "4" ]
+		then
+		fn_emailinstal
+		elif [ " $VAR" = "5" ]
+		then
+		fn_fakeapinstal
+		elif [ "$VAR" = "6" ]
+		then
+		fn_whatsinstal
+		elif [ "$VAR" = "7" ]
+		then
+		fn_bullinstal
+		elif [ "$VAR" = "8" ]
+		then
+		apt-get update
+		fn_installn
+		fn_metainstal
+		fn_phisintal
+		fn_emailinstal
+		fn_fakeapinstal
+		fn_webinstal
+		fn_whatsinstal
+		fn_bullinstal
+		fn_torinstal
+	#echo Proximamente
+	#apt-get install mysql
+	#apt-get install apache2
+	#apt-get install postfix
+		fi
+	fi
+elif [ "$VAR" = "0" ]; then
+services_stop
+elif [ "$VAR" = q ]; then
+echo Suggestions dergli@hushmail.com
+exit
+fi
+done
