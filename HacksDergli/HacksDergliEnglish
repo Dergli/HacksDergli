@@ -177,8 +177,10 @@ if [ "$VAR" = "1" ]; then
 banner
 echo 1.- Set IP by Ethernet
 echo 2.- Set IP by Wireless
-echo "3.- Crack WiFi (Bully)"
-echo 4.- Set Network GUI
+echo 3.- Set Network GUI
+echo "4.- Crack WiFi (Bully)"
+echo "5.- Crack WiFi (Grim)"
+echo "6.- Crack WiFi/WPS (Wifite)"
 echo "Press enter to return menu"
 	read VAR
 	clear
@@ -266,13 +268,20 @@ echo "Press enter to return menu"
 		then
 		echo Proximamente
 		fi
-	elif [ "$VAR" = "3" ]
+	elif [ "$VAR" = "4" ]
 	then
 	cd /home/HacksDergli/
 	sh bully.sh
-	elif [ "$VAR" = "4" ]
+	elif [ "$VAR" = "3" ]
 	then 
 	/etc/init.d/network-manager start
+	elif [ "$VAR" = "5" ]
+	then
+	cd /home/HacksDergli
+	java -jar grimwepa-por.jar &
+	elif [ "$VAR" = "6" ]
+	then
+	gnome-terminal -e "python /home/HacksDergli/wifite.py"
 	fi
 elif [ "$VAR" = "2" ]; then
 banner
@@ -307,6 +316,7 @@ banner
 echo 1.- Phising con Setoolkit
 echo 2.- SPTollkit
 echo 3.- Create SSL certificate
+echo "4.- Create SSL certificate (OSWAP)"
 echo "Press enter to return menu"
 	read VAR
 	clear
@@ -332,6 +342,11 @@ echo "Press enter to return menu"
 	a2ensite default-ssl
 	service apache2 reload
 	firefox -new-window https://127.0.0.1 &
+	elif [ "$VAR" = "4" ]
+	then
+	ruby /home/HacksDergli/certstealer-mitmtool/mitm_tool.rb
+	cd /home/HacksDergli/ertstealer-mitmtool
+	./certstealer.sh
 	fi
 elif [ "$VAR" = "4" ]; then
 banner
