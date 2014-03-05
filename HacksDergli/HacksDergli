@@ -101,6 +101,8 @@ fn_phisintal()
 {
 git clone https://github.com/trustedsec/social-engineer-toolkit/ set/
 git clone https://github.com/sptoolkit/sptoolkit /var/www/
+apt-get install sslscan
+apt-get install webhttrack
 }
 # Programas EMAIL
 fn_emailinstal()
@@ -317,6 +319,8 @@ echo 1.- Phising con Setoolkit
 echo 2.- SPTollkit
 echo 3.- Crear certificado SSL
 echo "4.- Crear certificado SSL(OSWAP)"
+echo 5.- Escanear certificado SSL
+echo 6.- Clonar url completa
 echo Pulsar enter para volver al menu
 	read VAR
 	clear
@@ -347,6 +351,15 @@ echo Pulsar enter para volver al menu
 	ruby /home/HacksDergli/certstealer-mitmtool/mitm_tool.rb
 	cd /home/HacksDergli/ertstealer-mitmtool
 	./certstealer.sh
+	elif [ "$VAR" = "5" ]
+	then
+	echo "Introduce [host puerto]"
+	read SSL
+	sslscan $SSL
+	sleep 10
+	elif [ "$VAR" = "6" ]
+	then
+	gnome-terminal -e "/usr/lib/httrack/htsserver /usr/share/httrack/"
 	fi
 elif [ "$VAR" = "4" ]; then
 banner
