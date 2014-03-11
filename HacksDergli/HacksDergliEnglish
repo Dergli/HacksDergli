@@ -538,7 +538,7 @@ echo 2.- Start BeEF
 	cd /usr/share/beef-xss/extensions/metasploit
 	gnome-terminal -e "msfconsole -r BeEF.rc"
 	cd /usr/share/beef-xss
-	./beef
+	./beef &
 	firefox -new-window http://127.0.0.1:3000/ui/panel &
 	fi
 
