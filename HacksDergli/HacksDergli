@@ -157,6 +157,19 @@ apt-get vidalia
 echo "forward-socks4a / 127.0.0.1:9050 . " >> /etc/privoxy/config 
 firefox -new-window https://addons.mozilla.org/es/firefox/addon/foxyproxy-standard/
 }
+fn_beefinstal()
+{
+apt-get update
+apt- get install mysql-server
+apt- get install nginx
+service nginx start
+apt-get install php5-fpm
+sed '675c\;cgi.fix_pathinfo = 0' /etc/php5/fpm/php.ini > default-php | mv default-php php.ini
+sed '33c\listen = /var/run/php5-fpm.sock' /etc/php5/fpm/pool.d/www.conf > default-www | mv default-www www.conf
+service php5-fpm restart
+service nginx restart
+curl https://raw.github.com/beefproject/beef/a6a7536e/install-beef | bash -s stable
+}
 banner
 
 echo 1.- Configurar IP DMZ/Crackear WiFi
@@ -167,7 +180,8 @@ echo 5.- Crear FakeAP/Hacer MITM
 echo 6.- Telefonia Virtual/SpoofSMS
 echo 7.- Anonimato 
 echo 8.- AIO Server
-echo 9.- Programas necesarios
+echo 9.- Ingenieria social BeEF
+echo 10.- Programas necesarios
 echo 0.- Detener todos los servicios
 echo q.- Salir
 
@@ -511,6 +525,26 @@ echo 2.- Iniciar AIO Server
 	fi
 
 elif [ "$VAR" = "9" ]; then
+echo 1.- Instalar
+echo 2.- Iniciar BeEF
+	read VAR
+	clear
+	if [ "$VAR" = "1" ]
+	then
+	fn_beefinstal
+	elif [ "$VAR" = "2" ]
+	then
+	service nginx start
+	service php5-fpm start
+	cd /usr/share/beef-xss/extensions/metasploit
+	gnome-terminal -e "msfconsole -r BeEF.rc"
+	cd /usr/share/beef-xss
+	./beef
+	firefox -new-window http://127.0.0.1:3000/ui/panel &
+	fi
+
+
+elif [ "$VAR" = "10" ]; then
 banner
 echo 1.- Instalar
 echo Pulsa enter para volver al menu
@@ -560,6 +594,7 @@ echo Pulsa enter para volver al menu
 		fn_whatsinstal
 		fn_bullinstal
 		fn_torinstal
+		fn_beefinstal
 	#echo Proximamente
 	#apt-get install mysql
 	#apt-get install apache2
