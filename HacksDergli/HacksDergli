@@ -154,7 +154,7 @@ fn_torinstal()
 apt-get update && apt-get install -y tor 
 apt-get privoxy
 apt-get vidalia
-echo "forward-socks4a / 127.0.0.1:9050 . " >> /etc/privoxy/config 
+echo "forward-socks5a / 127.0.0.1:9050 . " >> /etc/privoxy/config 
 firefox -new-window https://addons.mozilla.org/es/firefox/addon/foxyproxy-standard/
 }
 fn_beefinstal()
@@ -170,6 +170,11 @@ service php5-fpm restart
 service nginx restart
 curl https://raw.github.com/beefproject/beef/a6a7536e/install-beef | bash -s stable
 }
+fn_webvulinstall()
+{
+cp -R webvulscan/ /var/www/
+cp -R phpmyadmin/ /var/www/
+}
 banner
 
 echo 1.- Configurar IP DMZ/Crackear WiFi
@@ -178,11 +183,12 @@ echo 3.- Phising
 echo 4.- Servidor MAIL
 echo 5.- Crear FakeAP/Hacer MITM
 echo 6.- Telefonia Virtual/SpoofSMS
-echo 7.- Anonimato 
+echo 7.- Anonimato
 echo 8.- AIO Server
 echo 9.- Ingenieria social BeEF
 echo 10.- Programas necesarios
 echo 0.- Detener todos los servicios
+echo s.- WebvulnScan
 echo q.- Salir
 
 read VAR
@@ -601,6 +607,27 @@ echo Pulsa enter para volver al menu
 	#apt-get install postfix
 		fi
 	fi
+elif [ "$VAR" = s ]; then
+echo 1.- Instalar
+echo 2.- Iniciar
+	read VAR
+	clear
+	if [ "$VAR" = "1" ]; then
+	service mysql start
+	service apache2 start
+	fn_webvulinstall
+	echo Escribe el host de MySql
+	read HOST
+	echo Escribe el usuario de MySql
+	read USER
+	echo Escribe la contraseña de MySql
+	read PASS
+	sed '50c\;$db = $db = new mysqli( '$HOST', '$USER', '$PASS', 'webvulscan');' /var/www/webvulscan/scanner/functions/databaseFunctions.php > databaseFunctions | mv databaseFunctions databaseFunctions.php
+	firefox -new-window http://127.0.0.1/phpmyadmin/setup/index.php &
+	elif [ "$VAR" = "2" ]; then
+	firefox -new-window http://127.0.0.1/webvulscan &
+	fi
+
 elif [ "$VAR" = "0" ]; then
 services_stop
 elif [ "$VAR" = q ]; then
