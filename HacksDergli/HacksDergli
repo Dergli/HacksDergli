@@ -16,9 +16,9 @@
 #nombre de donde ha salido la idea principal y el paquete principal el cual habeis modificado
 
 #####################################################################
-#Autor: Dergli							    #
+#Autor: Mario Martinez Regidor							    #
 #PaginaWeb: En construccion					    #
-#Email de contacto:		dergli@hushmail.com		    #
+#Email de contacto:		mmartinezregidor@gmail.com		    #
 #								    #
 #								    #
 #####################################################################
@@ -103,6 +103,7 @@ git clone https://github.com/trustedsec/social-engineer-toolkit/ set/
 git clone https://github.com/sptoolkit/sptoolkit /var/www/
 apt-get install sslscan
 apt-get install webhttrack
+apt-get install lets-encrypt
 }
 # Programas EMAIL
 fn_emailinstal()
@@ -177,7 +178,7 @@ cp -R phpmyadmin/ /var/www/
 }
 banner
 
-echo 1.- Configurar IP DMZ/Crackear WiFi
+echo 1.- Configurar IP DMZ/Crackear WiFi/Hotspot
 echo 2.- Iniciar Metasploit
 echo 3.- Phising
 echo 4.- Servidor MAIL
@@ -202,7 +203,8 @@ echo 2.- Configurar IP Wireless
 echo 3.- Configurar visualmente
 echo "4.- Crackear WiFi (Bully)"
 echo "5.- Crackear WiFi (Grim)"
-echo "6.- Carckear WiFi/WPS (Wifite)"
+echo "6.- Crackear WiFi/WPS (Wifite)"
+echo 7.- Crackear Hotspot
 echo Pulsar enter para volver al menu
 	read VAR
 	clear
@@ -304,6 +306,9 @@ echo Pulsar enter para volver al menu
 	elif [ "$VAR" = "6" ]
 	then
 	gnome-terminal -e "python /home/HacksDergli/wifite.py"
+	elif [ "$VAR" = "5" ]
+	then
+	gnome-terminal -e "sh hotspot.sh"
 	fi
 elif [ "$VAR" = "2" ]; then
 banner
@@ -341,6 +346,7 @@ echo 3.- Crear certificado SSL
 echo "4.- Crear certificado SSL(OSWAP)"
 echo 5.- Escanear certificado SSL
 echo 6.- Clonar url completa
+echo "7.- Crear certificado HTTPS (Proximamente Verano 2015"
 echo Pulsar enter para volver al menu
 	read VAR
 	clear
@@ -380,6 +386,12 @@ echo Pulsar enter para volver al menu
 	elif [ "$VAR" = "6" ]
 	then
 	gnome-terminal -e "/usr/lib/httrack/htsserver /usr/share/httrack/"
+	elif [ "$VAR" = "7" ]
+	then 
+	echo Introduce direccion HTTP
+	read HTTP
+	lets-encrypt $HTTP
+	sleep10
 	fi
 elif [ "$VAR" = "4" ]; then
 banner
@@ -631,7 +643,7 @@ echo 2.- Iniciar
 elif [ "$VAR" = "0" ]; then
 services_stop
 elif [ "$VAR" = q ]; then
-echo Sugerencias dergli@hushmail.com
+echo Sugerencias mmartinezregidor@gmail.com
 exit
 fi
 done
